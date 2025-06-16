@@ -1,5 +1,5 @@
 from src.masks import get_mask_account, get_mask_card_number
-from src.processing import filter_by_state
+from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
 
 number_cart = "Счет 35383033474447895560"
@@ -26,5 +26,11 @@ if __name__ == "__main__":
 if __name__ == "__main__":
     print(filter_by_state(database))
 
-    if __name__ == "__main__":
-        print(filter_by_state(database, "CANCELED"))
+if __name__ == "__main__":
+    print(filter_by_state(database, "CANCELED"))
+
+if __name__ == "__main__":
+    print(sort_by_date(database))
+
+if __name__ == "__main__":
+    print(sort_by_date(database, False))
