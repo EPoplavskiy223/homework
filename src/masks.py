@@ -43,9 +43,20 @@ def get_mask_card_number(number_cart: Union[int, str]) -> Union[int, str]:
 
 
 def get_mask_account(number_cart: Union[int, str]) -> Union[int, str]:
+
+    cart_str = str(number_cart).replace(" ", "")
+
+    """ Счетчик кол-во цифр в вводных данных """
+    cart_len = 0
+    for char in cart_str:
+        if char.isdigit():
+            cart_len += 1
+
     """Функция маскирует по типу '**XXXX'"""
     cart_str = str(number_cart)
-    if len(cart_str) > 4:
+    if cart_len == 14 or cart_len == 16:
         last_four = cart_str[-4:]
         mask = "*" * (len(cart_str[-6:]) - 4) + last_four
-    return mask
+        return mask
+    else:
+        return "Ошибка! Счет не найдет!"
