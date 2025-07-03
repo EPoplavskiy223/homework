@@ -8,7 +8,7 @@ def mask_account_card(number_cart: str) -> str | tuple[str, int | str]:
     if "счет" in number_cart.lower().split()[0]:
         return f"Счет {get_mask_account(number_cart.split()[-1])}"
     else:
-        return " ".join(number_cart.split()[:-1]), get_mask_card_number(number_cart.split()[-1])
+        return get_mask_card_number(number_cart.split()[-1])
 
 
 def get_date(original_format_date: str) -> str:
