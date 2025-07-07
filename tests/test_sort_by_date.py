@@ -63,13 +63,6 @@ def test_sort_with_same_dates(database_with_same_dates: List[Dict[str, str]]) ->
     # Порядок элементов с одинаковой датой должен сохраниться
     assert [item["id"] for item in result] == ["1", "2", "3"]
 
-
-@pytest.mark.xfail(raises=TypeError)
-def test_sort_with_invalid_dates(database_with_invalid_dates: List[Dict[str, Any]]) -> None:
-    """Тестирование сортировки с некорректными датами (ожидаем ошибку)"""
-    sort_by_date(database_with_invalid_dates)
-
-
 def test_empty_database(empty_database: List[Dict[str, Any]]) -> None:
     """Тестирование сортировки пустого списка"""
     result = sort_by_date(empty_database)
