@@ -1,21 +1,6 @@
 from src.generators import filter_by_currency
-from src.masks import get_mask_account, get_mask_card_number
-from src.processing import filter_by_state, sort_by_date
-from src.widget import get_date, mask_account_card
 
-number_cart = "7000 7922 8960 6311"
-account_number = "73654108430135874305"
-account_info = "Visa Platinum 8990922113665229"
-original_format_date = "2024-03-11T02:26:18.671407"
-
-database = [
-    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-]
-
-transactions = [
+original_currency = [
     {
         "id": 939719570,
         "state": "EXECUTED",
@@ -62,32 +47,31 @@ transactions = [
         "to": "Счет 14211924144426031657",
     },
 ]
+incorrect_data = [{"operationAmount": {"currency": {"code": "USD"}}}]
 
-if __name__ == "__main__":
-    print(get_mask_card_number(number_cart))
 
-if __name__ == "__main__":
-    print(get_mask_account(account_number))
+def test_correct_test_operation_usd() -> None:
+    """Тестирования в нормальных условиях USD"""
+    func = filter_by_currency(original_currency, "USD")
+    assert next(func) == original_currency[0]
+    assert next(func) == original_currency[1]
+    assert next(func) == original_currency[3]
 
-if __name__ == "__main__":
-    print(mask_account_card(account_info))
 
-if __name__ == "__main__":
-    print(get_date(original_format_date))
+def test_correct_test_operation_rub() -> None:
+    """Тестирования в нормальных условиях RUB"""
+    func = filter_by_currency(original_currency, "RUB")
+    assert next(func) == original_currency[2]
+    assert next(func) == original_currency[4]
 
-if __name__ == "__main__":
-    print(filter_by_state(database))
 
-if __name__ == "__main__":
-    print(filter_by_state(database, "CANCELED"))
+def test_filter_by_currency_no_matches() -> None:
+    """Тестирование случая, когда нет совпадений"""
+    func = filter_by_currency(original_currency, "GBP")
+    assert next(func) == "Список пустой, итерировать нечего!"
 
-if __name__ == "__main__":
-    print(sort_by_date(database))
 
-if __name__ == "__main__":
-    print(sort_by_date(database, False))
-
-if __name__ == "__main__":
-    usd_transactions = filter_by_currency(transactions, "USD")
-    for _ in range(2):
-        print(next(usd_transactions))
+def test_filter_by_currency_empty_input() -> None:
+    """Тестирование с пустым входным списком"""
+    func = filter_by_currency([], "USD")
+    assert next(func) == "Список пустой, итерировать нечего!"
