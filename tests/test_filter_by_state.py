@@ -37,7 +37,6 @@ def no_state_key_database() -> List[Dict[str, Any]]:
     ]
 
 
-# Тесты
 @pytest.mark.parametrize(
     "state, expected_ids",
     [
