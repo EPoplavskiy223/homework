@@ -8,3 +8,13 @@ def filter_by_currency(transactions: list, currency: str) -> Generator[Any, Any,
             yield x
     while True:
         yield "Список пустой, итерировать нечего!"
+
+
+def transaction_descriptions(transactions: list) -> Generator[str | Any, Any, None]:
+    """Функция возвращает тип операции"""
+    for x in transactions:
+        description = x.get("description", "")
+        if description.isspace() or not description:
+            yield f'ID операции где не найдено описание: {x["id"]}'
+        else:
+            yield description
