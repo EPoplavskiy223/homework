@@ -5,37 +5,38 @@ def get_mask_card_number(user_input: Union[int, str]) -> str:
     """Функция маскирует номер карты"""
     digit = []
 
-    for i in user_input:
+    str_input = str(user_input)
+
+    for i in str_input:
         if i.isdigit():
             digit.append(i)
 
-    result = []
-    cart_str = str("".join(digit).replace(" ", ""))
+    cart_str = "".join(digit).replace(" ", "")
 
     if len(cart_str) == 0:
         return "Строка с картой пустая!"
 
     if len(cart_str) in (14, 16):
+        masked = cart_str[:6] + ("*" * len(cart_str[6:-4])) + cart_str[-4:]
 
-        masked = cart_str[0:6] + "*" * (len(cart_str[6:-4])) + cart_str[-4:]
-        # Делает срез Карты и добавляет не замаскированные числа
-
-        for i in range(0, len(masked), 4):  # Перебирает значения
-            result.append(masked[i : i + 4])
+        # Разбиваем на группы по 4 символа
+        result = [masked[i : i + 4] for i in range(0, len(masked), 4)]
         return " ".join(result)
     else:
         return "Неверный формат карты"
 
 
-def get_mask_account(user_input: Union[int, str]) -> int | str:
-    """Функция маскирует номер счета '"""
+def get_mask_account(user_input: Union[int, str]) -> Union[int, str]:
+    """Функция маскирует номер счета"""
     digit = []
+    str_input = str(user_input)
 
-    for i in user_input:
+    for i in str_input:
         if i.isdigit():
             digit.append(i)
 
-    cart_str = str("".join(digit).replace(" ", ""))
+    cart_str = "".join(digit).replace(" ", "")
+
     if len(cart_str) == 20:
         masked = "**" + cart_str[-4:]
         return masked

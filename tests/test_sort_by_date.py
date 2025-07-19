@@ -24,17 +24,6 @@ def database_with_same_dates() -> List[Dict[str, str]]:
         {"id": "3", "date": "2023-01-01"},
     ]
 
-
-@pytest.fixture
-def database_with_invalid_dates() -> List[Dict[str, Any]]:
-    return [
-        {"id": "1", "date": "2023-01-15"},
-        {"id": "2", "date": "invalid-date"},
-        {"id": "3", "date": "15/01/2023"},  # Нестандартный формат
-        {"id": "4", "date": None},
-    ]
-
-
 @pytest.fixture
 def empty_database() -> List[Dict[str, Any]]:
     return []
@@ -62,6 +51,7 @@ def test_sort_with_same_dates(database_with_same_dates: List[Dict[str, str]]) ->
     result = sort_by_date(database_with_same_dates, reverse=True)
     # Порядок элементов с одинаковой датой должен сохраниться
     assert [item["id"] for item in result] == ["1", "2", "3"]
+
 
 def test_empty_database(empty_database: List[Dict[str, Any]]) -> None:
     """Тестирование сортировки пустого списка"""
