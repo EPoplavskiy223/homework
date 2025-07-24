@@ -24,6 +24,7 @@ def database_with_same_dates() -> List[Dict[str, str]]:
         {"id": "3", "date": "2023-01-01"},
     ]
 
+
 @pytest.fixture
 def empty_database() -> List[Dict[str, Any]]:
     return []
