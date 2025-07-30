@@ -9,9 +9,10 @@ logger = logging.getLogger("name")
 logger.setLevel(logging.DEBUG)
 file_handler = logging.FileHandler("logs/masks.log", mode="w", encoding="utf-8")
 file_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s %(message)s")
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
+
 # Создание дочерних логгеров
 number_logger = logging.getLogger("name.mask_card")
 account_logger = logging.getLogger("name.account_mask")
