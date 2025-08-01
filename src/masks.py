@@ -73,6 +73,6 @@ def get_mask_account(user_input: Union[int, str]) -> Union[int, str]:
         return "Номер счета < 20 цифр"
 
 
-if __name__ == "__main__":
-    print(get_mask_card_number(1111222233334444))
-    print(get_mask_account(12345678901234567890))
+# if __name__ == "__main__":
+#     print(get_mask_card_number(1111222233334444))
+#     print(get_mask_account(12345678901234567890))

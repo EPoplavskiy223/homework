@@ -25,13 +25,16 @@ def convector_json(file_path: str) -> list | dict | str:
             logger.info(f"Файл {file_path} успешно открыт")
             data = json.load(json_file)
             logger.info("Файл успешно прочитан и преобразован в объект Python")
-            return data
+            return data  # type: ignore[no-any-return]
+
     except json.JSONDecodeError:
         logger.error("Не удалось прочитать файл")
         return "Файл пустой! Или не содержит .json"
+
     except FileNotFoundError:
         logger.error("Файл не найден")
         return "Файл не найден"
+
     # except json.JSONDecodeError or FileNotFoundError:
     #     return []
 
