@@ -3,11 +3,11 @@ from typing import Any
 
 def filter_by_state(database: list[dict], state: str = "EXECUTED") -> list[Any]:
     """Сортирует список по ключу state"""
-    filter = []
+    filter_result = []
     for item in database:
         if item.get("state") == state:
-            filter.append(item)
-    return filter
+            filter_result.append(item)
+    return filter_result
 
 
 def sort_by_date(database: list[dict], reverse: bool = True) -> list[dict]:

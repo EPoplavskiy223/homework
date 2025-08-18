@@ -40,4 +40,3 @@ def convector_json(file_path: str) -> list | dict | str:
 
 
 file_json = "C:/PythonProgramm/PROJECT/homework/data/operations.json"  # Почему-то принимает только абсолютный путь
-print(convector_json(file_json))
