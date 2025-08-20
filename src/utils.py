@@ -29,15 +29,18 @@ def convector_json(file_path: str) -> list | dict | str:
 
     except json.JSONDecodeError:
         logger.error("Не удалось прочитать файл")
-        return "Файл пустой! Или не содержит .json"
+        return ["Файл пустой! Или не содержит .json"]
 
     except FileNotFoundError:
         logger.error("Файл не найден")
-        return "Файл не найден"
+        return ["Файл не найден"]
+
+    except UnicodeDecodeError:
+        logger.error("Файл не найден")
+        return ["Не правильный формат файла"]
 
     # except json.JSONDecodeError or FileNotFoundError:
     #     return []
 
 
 file_json = "C:/PythonProgramm/PROJECT/homework/data/operations.json"  # Почему-то принимает только абсолютный путь
-print(convector_json(file_json))
