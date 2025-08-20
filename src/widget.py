@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(user_input: str) -> str:
@@ -32,7 +32,7 @@ def get_date(original_format_date: str) -> str:
     if not original_format_date:
         return "Строка пустая!"
     try:
-        date_str = original_format_date.rstrip('Z')
+        date_str = original_format_date.rstrip("Z")
 
         try:
             date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")

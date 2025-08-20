@@ -8,7 +8,7 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
     pattern = re.compile(search, re.IGNORECASE)
     result = []
 
-    def search_in_dict(d):
+    def search_in_dict(d: dict) -> bool:
         for v in d.values():
             if isinstance(v, str) and pattern.search(v):
                 return True
@@ -23,8 +23,8 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
     return result
 
 
-def process_bank_operations(data):
+def process_bank_operations(data: list[dict]) -> dict:
     """Подсчет количества словарей в списке"""
 
-    counter = Counter(['score' for _ in data])
+    counter = Counter(["score" for _ in data])
     return counter

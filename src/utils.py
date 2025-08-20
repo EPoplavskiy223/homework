@@ -37,7 +37,7 @@ def convector_json(file_path: str) -> list | dict | str:
 
     except UnicodeDecodeError:
         logger.error("Файл не найден")
-        return ['Не правильный формат файла']
+        return ["Не правильный формат файла"]
 
     # except json.JSONDecodeError or FileNotFoundError:
     #     return []

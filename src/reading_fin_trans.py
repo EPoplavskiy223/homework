@@ -12,8 +12,7 @@ def reading_csv(file_csv: str) -> list:
 
         return list_of_dicts
     except UnicodeDecodeError:
-        return ['Не правильный формат файла']
-
+        return ["Не правильный формат файла"]
 
 
 def reading_excel(file_excel: str) -> list:
@@ -24,9 +23,4 @@ def reading_excel(file_excel: str) -> list:
 
         return list_of_dicts
     except UnicodeDecodeError:
-        return ['Не правильный формат файла']
-
-
-
-# print(reading_csv(my_file_csv))
-# reading_excel(my_file_excel)
+        return ["Не правильный формат файла"]
