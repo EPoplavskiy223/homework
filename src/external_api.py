@@ -26,9 +26,9 @@ def currency_exchange(payload: dict) -> float | str:
     return float(response.json()["result"])
 
 
-payload = {
+payload11 = {
     "amount": "1",
-    "from": "USD",
+    "from": "PHP",
     # "to": "USD"
 }
-print(currency_exchange(payload))
+# print(currency_exchange(payload11))

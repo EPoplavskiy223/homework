@@ -32,7 +32,14 @@ def get_date(original_format_date: str) -> str:
     if not original_format_date:
         return "Строка пустая!"
     try:
-        date_obj = datetime.strptime(original_format_date, "%Y-%m-%dT%H:%M:%S.%f")
+        date_str = original_format_date.rstrip("Z")
+
+        try:
+            date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
+
+        except ValueError:
+            date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
+
         return date_obj.strftime("%d.%m.%Y")
 
     except ValueError:
