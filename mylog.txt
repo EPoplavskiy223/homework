@@ -1,0 +1,1 @@
+INFO:root:my_function_with_log ok
